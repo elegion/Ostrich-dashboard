@@ -26,7 +26,7 @@ var fetch = function() {
         if (!counter) {
           counter = new Counter(id)
           counters[id] = counter
-          $('#graphs > table > tbody').append('<tr><td>'+k+'&nbsp</td><td id="'+id+'"><span>...</span></td></tr>')
+          $('#graphs > table > tbody').append('<tr><td>'+k+'&nbsp</td><td class="spark" id="'+id+'"><span>...</span></td></tr>')
         }
         counter.values.push(new TimedValue(v))
         drawSparkline(id)
@@ -40,7 +40,7 @@ var drawSparkline = function(name) {
   var data = $.map(counters[name].values, function(timevalue){
     return timevalue.value;
   });
-  $('#'+name+" > span").sparkline(data, {width: "400px"});
+  $('#'+name+" > span").sparkline(data, {width: "500px", height: "30px"});
 }
 
 var reset = function() {
