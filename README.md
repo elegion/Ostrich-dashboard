@@ -1,14 +1,16 @@
 # Ostrich Dashboard
 
-Simple client-side (ostrich)[https://github.com/twitter/ostrich] dashboard UI.
+Simple client-side dashboard UI for (ostrich)[https://github.com/twitter/ostrich].
 
 ## Usage
 
-Open index.html with your favourite browser. Enter ostrich url (hostname + port), press 'GO'.
+- Open index.html with your favourite browser. 
+- Enter ostrich url (like 'http://localhost:8888') 
+- Press 'Go'.
 
 ## Current features
 
-- Show counters and gauges (sparkline graph, current value, delta)
+- Show realtime data for counters and gauges (sparkline graph, current value, delta)
 
 ## Planned features
 
