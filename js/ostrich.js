@@ -46,6 +46,24 @@ $(function(){
           counter.addValue(new TimedValue(v))
           updateValue(id)
         });
+        $.each(data.gauges, function(k,v){
+          var id = "g_"+k.replace(/[^a-zA-Z0-9]/g, "_")
+          var counter = counters[id]
+          if (!counter) {
+            counter = new Counter(id, v);
+            counters[id] = counter;
+            $('#graphs > table > tbody').append(
+              '<tr>' +
+               '<td>'+k+'&nbsp</td>' + 
+               '<td id="value_'+id+'"></td>' + 
+               '<td id="delta_'+id+'"></td>' + 
+               '<td class="spark" id="'+id+'"><span>...</span></td>' + 
+              '</tr>'
+            );
+          }
+          counter.addValue(new TimedValue(v))
+          updateValue(id)
+        });
         setTimeout(fetch, 2000);
       },
       error: function(xOptions, status) {
