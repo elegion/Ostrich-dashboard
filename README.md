@@ -1,6 +1,6 @@
 # Ostrich Dashboard
 
-Simple client-side dashboard UI for (ostrich)[https://github.com/twitter/ostrich].
+Simple client-side dashboard UI for [ostrich](https://github.com/twitter/ostrich).
 
 ## Usage
 
@@ -16,16 +16,16 @@ Simple client-side dashboard UI for (ostrich)[https://github.com/twitter/ostrich
 
 - Add metrics and labels support
 - Multiple servers support (using composite graphs)
-- Show large graphs via flot (http://code.google.com/p/flot/)
+- Show large graphs via [flot](http://code.google.com/p/flot/)
 - Hide unnecessary graphs
 - Set alerts on value change
 - Save personal settings using local storage
 
 ## Toolbox
 
-- HTML5 Boilerplate (http://html5boilerplate.com/)
-- Twitter Boostrap (http://twitter.github.com/bootstrap/)
-- jQuery Sparklines (http://omnipotent.net/jquery.sparkline/)
+- [HTML5 Boilerplate](http://html5boilerplate.com/)
+- [Twitter Boostrap](http://twitter.github.com/bootstrap/)
+- [jQuery Sparklines](http://omnipotent.net/jquery.sparkline/)
 
 ## Credits
 
