@@ -31,7 +31,7 @@
 		<div class="row">
 			<div class="span8 columns"><h1>Ostrich stats dashboard</h1></div>
 			<div class="span3 columns offset3"><input id="ostrich-address" type="text" value="http://192.168.1.118:10088"/></div>
-			<div class="span1 column offset1"><input type="submit" class="btn primary" value="go" onclick="reset();"/></div> 
+			<div class="span1 column offset1"><input type="submit" class="btn primary" value="go" id="reset"/></div> 
 		</div>
 
 		<div class="row">
@@ -41,6 +41,11 @@
 				<p>Lo-fi trust fund put a bird on it, cliche marfa cardigan raw denim vegan shoreditch high life mixtape ethical williamsburg mustache. Vice mlkshk keffiyeh Austin next level wes anderson. Viral lo-fi cardigan, vice VHS butcher quinoa +1 wayfarers craft beer hoodie iphone etsy master cleanse. Tofu art party freegan, quinoa sustainable yr portland. Cliche synth +1, sustainable helvetica squid hoodie tofu etsy wayfarers. Vinyl aesthetic american apparel next level quinoa, +1 photo booth whatever 3 wolf moon chambray scenester butcher cliche lo-fi. 8-bit high life lo-fi twee gluten-free.</p>
 			</div>
 			<div class="span12 columns" id="graphs">
+				<div class="alert-message error" id="errorDiv" style="display: none;">
+	        <a class="close" id="errorClose" href="#">×</a>
+	        <p></p>
+	      </div>
+
 				<table class="zebra-striped">
 					<tbody>
 					</tbody>
@@ -57,6 +62,7 @@
 	<!--<script src="js/script.js"></script>-->
 	<script src="js/libs/jquery.flot.js"></script>
 	<script src="js/libs/jquery.sparkline.js"></script>
+	<script src="js/libs/jquery.jsonp-2.1.4.min.js"></script>
 	<script src="js/ostrich.js"></script>
 	<!--[if lt IE 7 ]>
 	<script src="js/libs/dd_belatedpng.js"></script>
