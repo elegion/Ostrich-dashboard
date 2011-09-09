@@ -78,7 +78,7 @@ $(function(){
     var data = $.map(counters[name].values, function(timevalue){
       return timevalue.value;
     });
-    $('#'+name+" > span").sparkline(data, {width: "500px", height: "30px"});
+    $('#'+name+" > span").sparkline(data, {width: "400px", height: "30px"});
     $('#value_'+name).text(data[data.length-1]);
     var delta = data[data.length-1] - data[data.length-2];
     var sign  = delta >= 0 ? "+" : "";
