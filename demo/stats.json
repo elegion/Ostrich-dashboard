@@ -1,4 +1,4 @@
-{
+ostrichCallback({
   "counters": {
     "jvm_gc_Copy_cycles": 888,
     "jvm_gc_Copy_msec": 3645,
@@ -52,4 +52,4 @@
       "sum": 638068
     }
   }
-}
+})
