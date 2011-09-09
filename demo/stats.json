@@ -1,0 +1,55 @@
+{
+  "counters": {
+    "jvm_gc_Copy_cycles": 888,
+    "jvm_gc_Copy_msec": 3645,
+    "jvm_gc_MarkSweepCompact_cycles": 8,
+    "jvm_gc_MarkSweepCompact_msec": 1378,
+    "jvm_gc_cycles": 896,
+    "jvm_gc_msec": 5023,
+    "workers": 10,
+    "JDBC Connections": 12
+  },
+  "gauges": {
+    "jvm_fd_count": 105,
+    "jvm_fd_limit": 4096,
+    "jvm_heap_committed": 92221440,
+    "jvm_heap_max": 518979584,
+    "jvm_heap_used": 55225504,
+    "jvm_nonheap_committed": 71827456,
+    "jvm_nonheap_max": 123731968,
+    "jvm_nonheap_used": 63974616,
+    "jvm_num_cpus": 1,
+    "jvm_post_gc_Eden_Space_used": 0,
+    "jvm_post_gc_Perm_Gen__shared_ro__used": 7733248,
+    "jvm_post_gc_Perm_Gen__shared_rw__used": 7641864,
+    "jvm_post_gc_Perm_Gen_used": 32195088,
+    "jvm_post_gc_Survivor_Space_used": 425104,
+    "jvm_post_gc_Tenured_Gen_used": 38030840,
+    "jvm_post_gc_used": 86026144,
+    "jvm_start_time": 1315504260661,
+    "jvm_thread_count": 35,
+    "jvm_thread_daemon_count": 12,
+    "jvm_thread_peak_count": 78,
+    "jvm_uptime": 67579242
+  },
+  "labels": {
+    "Label": "Hello?"
+  },
+  "metrics": {
+    "sendMail_msec": {
+      "average": 946,
+      "count": 674,
+      "maximum": 7035,
+      "minimum": 128,
+      "p25": 234,
+      "p50": 258,
+      "p75": 427,
+      "p90": 3858,
+      "p95": 4714,
+      "p99": 5210,
+      "p999": 7035,
+      "p9999": 7035,
+      "sum": 638068
+    }
+  }
+}
