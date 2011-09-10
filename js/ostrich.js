@@ -18,7 +18,7 @@ $(function(){
   }
 
   var counters = []
-  var address = $('#ostrich-address').val()
+  var address = $('#ostrich-address').val().replace(/\/$/g, "")
 
   var fetch = function() {
     $.jsonp({
@@ -88,7 +88,7 @@ $(function(){
 
   $('#reset').click(function(){
     counters = [];  
-    address = $('#ostrich-address').val();
+    address = $('#ostrich-address').val().replace(/\/$/g, "");
     $('#graphs > table > tbody > tr').remove(); 
   });
 
