@@ -47,15 +47,25 @@ $(function(){
     indicator.render();
   }
 
-  $('#reset').click(function(){
+  var reset = function() {
     indicators = [];  
     address = $('#ostrich-address').val().replace(/\/$/g, "");
     $('#graphs > table > tbody > tr').remove(); 
+  };
+
+  $('#reset').click(reset);
+  $('#ostrich-address').keyup(function(event){
+    if (event.keyCode == 13) {
+      reset();
+    }
   });
+
 
   $('#errorClose').click(function(){
     $('#graphs > .error ').hide();
   });
+
+
 
   fetch();
 });
