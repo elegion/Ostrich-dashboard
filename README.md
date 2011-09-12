@@ -11,6 +11,7 @@ Simple client-side dashboard UI for [ostrich](https://github.com/twitter/ostrich
 ## Current features
 
 - Show realtime data for counters and gauges (sparkline graph, current value, delta)
+- Save ostrich URL to localStorage
 
 ## Planned features
 
