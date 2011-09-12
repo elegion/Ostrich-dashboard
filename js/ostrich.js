@@ -38,7 +38,7 @@ $(function(){
 
   //handle errors
   $('#errorClose').click(function(){
-    $('#graphs > .error ').hide();
+    $('#errorDiv').hide();
   });
 
   //load address from localStorage if any

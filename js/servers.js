@@ -43,8 +43,8 @@ var Server = function(id, address, color) {
         
       },
       error: function(xOptions, status) {
-        $('#graphs > .error ').show();  
-        $('#graphs > .error > p').text('Error occurred while trying to fetch '+xOptions.url+' ('+status+')!');
+        $('#errorDiv').show();  
+        $('#errorDiv > p').text('Error occurred while trying to fetch '+xOptions.url+' ('+status+')!');
         $.each(self.indicators, function(indicator){
           indicator.addValue(new TimedValue(null))
         });
