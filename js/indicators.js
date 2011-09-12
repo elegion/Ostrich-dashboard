@@ -25,7 +25,6 @@ function Indicator(id, name, initialValue, type) {
   };
 
   this.render = function(color, count) {
-    console.log("count: "+count)
     var oldCount = parseInt($('#'+this.id).attr("n"))
     var composite = true;
     if (oldCount < count) { //first redraw in this fetch pack
@@ -40,16 +39,17 @@ function Indicator(id, name, initialValue, type) {
     $('#delta_'+this.id).text('('+sign+delta+')');
   }
 
-  $('#graphs > table > tbody').append(
-    '<tr>' +
-     '<td>'+type+'&nbsp</td>' + 
-     '<td>'+name+'&nbsp</td>' + 
-     '<td id="value_'+id+'"></td>' + 
-     '<td id="delta_'+id+'"></td>' + 
-     '<td class="spark" n="-1" id="'+id+'"><span>...</span></td>' + 
-    '</tr>'
-  );
-
+  if (!$('#'+id).length) {
+    $('#graphs > table > tbody').append(
+      '<tr>' +
+       '<td>'+type+'&nbsp</td>' + 
+       '<td>'+name+'&nbsp</td>' + 
+       '<td id="value_'+id+'"></td>' + 
+       '<td id="delta_'+id+'"></td>' + 
+       '<td class="spark" n="-1" id="'+id+'"><span>...</span></td>' + 
+      '</tr>'
+    );
+  }
 }
 
 function Counter(name, initialValue) {

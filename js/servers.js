@@ -7,7 +7,7 @@ var Server = function(id, address, color) {
   this.indicators = [];
   this.indicatorNames = [];
 
-  this.fetch = function(count) {
+  this.fetch = function(count, updatedSet, targetCount) {
     var self = this;
     $.jsonp({
       url: address+"/stats.json", 
@@ -34,7 +34,13 @@ var Server = function(id, address, color) {
           }
           indicator.addValue(new TimedValue(v));
         });
-        self.render(count);
+        updatedSet.push(self);
+        if (updatedSet.length >= targetCount) {
+          $.each(updatedSet, function(k, server){
+            server.render(count);
+          });  
+        }
+        
       },
       error: function(xOptions, status) {
         $('#graphs > .error ').show();  

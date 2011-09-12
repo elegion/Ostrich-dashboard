@@ -7,8 +7,10 @@ $(function(){
   var fetchCounter = 0
 
   var fetch = function() {
+    var targetCount = servers.length
+    var updatedSet = []
     $.each(servers, function(index, server){
-      server.fetch(fetchCounter);
+      server.fetch(fetchCounter, updatedSet, targetCount);
     });
     fetchCounter++;
     setTimeout(fetch, 2000);
