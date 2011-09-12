@@ -48,6 +48,15 @@ var Server = function(id, address, color) {
         $.each(self.indicators, function(indicator){
           indicator.addValue(new TimedValue(null))
         });
+
+        //cause we don't want hanged server break our rendering
+        updatedSet.push(self);
+        if (updatedSet.length >= targetCount) {
+          $.each(updatedSet, function(k, server){
+            server.render(count);
+          });  
+        }
+
       }
     });
   };
