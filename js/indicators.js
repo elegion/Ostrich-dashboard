@@ -35,6 +35,7 @@ function Indicator(id, name, initialValue, type) {
 
   $('#graphs > table > tbody').append(
     '<tr>' +
+     '<td>'+type+'&nbsp</td>' + 
      '<td>'+name+'&nbsp</td>' + 
      '<td id="value_'+id+'"></td>' + 
      '<td id="delta_'+id+'"></td>' + 
