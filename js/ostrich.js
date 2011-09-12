@@ -1,50 +1,14 @@
 $(function(){
   var namespace = "head" //todo: generate unique
 
-  var indicators
-  var address
+  var servers = []
 
   var fetch = function() {
-    $.jsonp({
-      url: address+"/stats.json", 
-      data: {callback: ""},
-      dataType: "jsonp",
-      callback: "ostrichCallback",
-      timeout: 1000,
-      success: function(data){
-        $.each(data.counters, function(k,v){
-          var indicator = indicators[k]
-          if (!indicator) {
-            indicator = new Counter(k, v);
-            indicators[k] = indicator;
-          }
-          indicator.addValue(new TimedValue(v))
-          updateValue(k)
-        });
-        $.each(data.gauges, function(k,v){
-          var id = "g_"+k.replace(/[^a-zA-Z0-9]/g, "_")
-          var indicator = indicators[k]
-          if (!indicator) {
-            indicator = new Gauge(k, v);
-            indicators[k] = indicator;
-          }
-          indicator.addValue(new TimedValue(v))
-          updateValue(k)
-        });
-        setTimeout(fetch, 2000);
-      },
-      error: function(xOptions, status) {
-        $('#graphs > .error ').show();  
-        $('#graphs > .error > p').text('Error occurred while trying to fetch '+xOptions.url+' ('+status+')!');
-        setTimeout(fetch, 2000); //todo: do fetch in reset after error
-      }
+    $.each(servers, function(index, server){
+      server.fetch();
     });
+    setTimeout(fetch, 2000);
   };
-
-  var updateValue = function(name) {
-    var indicator = indicators[name];
-    indicator.render();
-  }
 
   var reset = function() {
     indicators = [];  
@@ -53,6 +17,7 @@ $(function(){
     if (localStorage) {
       localStorage["ostrich-address"] = address;
     }
+    servers.push(new Server(address, address, "red"));
   };
 
   //bind reset events

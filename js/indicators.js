@@ -16,7 +16,7 @@ function Indicator(id, name, initialValue, type) {
   var initial = new TimedValue(initialValue);
   this.id = id
   this.name = name;
-  this.values = newFilledArray(400, initial);
+  this.values = newFilledArray(350, initial);
   this.opts = {}
 
   this.addValue = function(value) {
@@ -26,7 +26,7 @@ function Indicator(id, name, initialValue, type) {
 
   this.render = function() {
     var data = this.getData();
-    $('#'+this.id+" > span").sparkline(data, {width: "400px", height: "30px"});
+    $('#'+this.id+" > span").sparkline(data, {width: "350px", height: "30px"});
     $('#value_'+this.id).text(this.values[this.values.length-1].value);
     var delta = this.values[this.values.length-1].value - this.values[this.values.length-2].value;
     var sign  = delta >= 0 ? "+" : "";

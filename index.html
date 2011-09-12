@@ -36,12 +36,26 @@
 		</div>
 
 		<div class="row">
-			<div class="span16 columns" id="graphs">
-				<div class="alert-message error" id="errorDiv" style="display: none;">
-	        <a class="close" id="errorClose" href="#">×</a>
-	        <p></p>
-	      </div>
+			<div class="alert-message error span16 columns" id="errorDiv" style="display: none;">
+	      <a class="close" id="errorClose" href="#">×</a>
+	      <p></p>
+	    </div>
+	  </div>
 
+	  <div class="row">
+	  	<div class="span16 columns">
+	  		<ul class="tabs" id="servers">
+	  			<li class="active"><a href="#">All</a></li>
+<!-- 	  			<li><a href="#"><span style="color: red;">●</span> 192.168.1.118:10088</a></li>
+	  			<li><a href="#"><span style="color: blue;">●</span> 192.168.1.118:10088</a></li>
+	  			<li><a href="#"><span style="color: green;">●</span> 192.168.1.118:10088</a></li>
+	  			<li style="float: right;"><a class="dropdown-toggle" href="#">Settings</a></li>
+ -->	  		</ul>
+	  	</div>
+	  </div> 
+		<div class="row">
+			<div class="span16 columns" id="graphs">
+	     
 				<table class="zebra-striped">
 					<thead>
 						<tr>
@@ -69,6 +83,7 @@
 	<script src="js/libs/jquery.sparkline.js"></script>
 	<script src="js/libs/jquery.jsonp-2.1.4.min.js"></script>
 	<script src="js/indicators.js"></script>
+	<script src="js/servers.js"></script>
 	<script src="js/ostrich.js"></script>
 	<!--[if lt IE 7 ]>
 	<script src="js/libs/dd_belatedpng.js"></script>
