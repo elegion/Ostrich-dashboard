@@ -3,3 +3,7 @@ td.spark {
   padding-bottom: 2px; 
   width: 350px;
 }
+
+span.closeServer {
+  color: gray;
+}

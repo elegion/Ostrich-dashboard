@@ -70,7 +70,7 @@ var Server = function(id, address, color) {
 
   $('#servers').append(
     '<li id="server-'+this.id+'">' +
-      '<a href="#"><span style="color: '+this.color+';">●&nbsp;</span>'+this.name+'</a>' + 
+      '<a href="#"><span style="color: '+this.color+';">●&nbsp;</span>'+this.name+'&nbsp;<span class="closeServer">×</span></a>' + 
     '</li>'
   );
 
