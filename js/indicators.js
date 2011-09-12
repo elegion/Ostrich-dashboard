@@ -24,9 +24,16 @@ function Indicator(id, name, initialValue, type) {
     this.values.push(value)
   };
 
-  this.render = function() {
+  this.render = function(color, count) {
+    console.log("count: "+count)
+    var oldCount = parseInt($('#'+this.id).attr("n"))
+    var composite = true;
+    if (oldCount < count) { //first redraw in this fetch pack
+      $('#'+this.id).attr('n', count);
+      composite = false;  
+    } 
     var data = this.getData();
-    $('#'+this.id+" > span").sparkline(data, {width: "350px", height: "30px"});
+    $('#'+this.id+" > span").sparkline(data, {width: "350px", height: "30px", lineColor: color, composite: composite, fillColor: false});
     $('#value_'+this.id).text(this.values[this.values.length-1].value);
     var delta = this.values[this.values.length-1].value - this.values[this.values.length-2].value;
     var sign  = delta >= 0 ? "+" : "";
@@ -39,7 +46,7 @@ function Indicator(id, name, initialValue, type) {
      '<td>'+name+'&nbsp</td>' + 
      '<td id="value_'+id+'"></td>' + 
      '<td id="delta_'+id+'"></td>' + 
-     '<td class="spark" id="'+id+'"><span>...</span></td>' + 
+     '<td class="spark" n="-1" id="'+id+'"><span>...</span></td>' + 
     '</tr>'
   );
 
