@@ -1,7 +1,6 @@
 $(function(){
   var namespace = "head" //todo: generate unique
 
-
   var indicators = []
   var address = $('#ostrich-address').val().replace(/\/$/g, "")
 
@@ -51,21 +50,29 @@ $(function(){
     indicators = [];  
     address = $('#ostrich-address').val().replace(/\/$/g, "");
     $('#graphs > table > tbody > tr').remove(); 
+    if (localStorage) {
+      localStorage["ostrich-address"] = address;
+    }
   };
 
+  //bind reset events
   $('#reset').click(reset);
+  
   $('#ostrich-address').keyup(function(event){
     if (event.keyCode == 13) {
       reset();
     }
   });
 
-
+  //handle errors
   $('#errorClose').click(function(){
     $('#graphs > .error ').hide();
   });
 
-
+  //load address from localStorage if any
+  if (localStorage && localStorage["ostrich-address"]) {
+    $('#ostrich-address').val(localStorage["ostrich-address"]);
+  }
 
   fetch();
 });
