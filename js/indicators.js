@@ -24,6 +24,15 @@ function Indicator(id, name, initialValue, type) {
     this.values.push(value)
   };
 
+  this.render = function() {
+    var data = this.getData();
+    $('#'+this.id+" > span").sparkline(data, {width: "400px", height: "30px"});
+    $('#value_'+this.id).text(this.values[this.values.length-1].value);
+    var delta = this.values[this.values.length-1].value - this.values[this.values.length-2].value;
+    var sign  = delta >= 0 ? "+" : "";
+    $('#delta_'+this.id).text('('+sign+delta+')');
+  }
+
   $('#graphs > table > tbody').append(
     '<tr>' +
      '<td>'+name+'&nbsp</td>' + 
@@ -38,12 +47,25 @@ function Indicator(id, name, initialValue, type) {
 function Counter(name, initialValue) {
   var id = "c_"+name.replace(/[^a-zA-Z0-9]/g, "_");
   var me = new Indicator(id, name, initialValue, 'counter');
+  me.getData = function() {
+    var deltas = [];
+    for (var i=1; i < me.values.length; i++) { //(puke)
+      deltas.push(me.values[i].value - me.values[i-1].value);
+    };
+    return deltas;
+  };
+
   return me;
 }
 
 function Gauge(name, initialValue) {
   var id = "g_"+name.replace(/[^a-zA-Z0-9]/g, "_");
   var me = new Indicator(id, name, initialValue, 'gauge');
+  me.getData = function() {
+    return $.map(me.values, function(timevalue){
+      return timevalue.value;
+    });
+  };
   return me;  
 }
 

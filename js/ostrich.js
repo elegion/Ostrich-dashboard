@@ -44,14 +44,7 @@ $(function(){
 
   var updateValue = function(name) {
     var indicator = indicators[name];
-    var data = $.map(indicator.values, function(timevalue){
-      return timevalue.value;
-    });
-    $('#'+indicator.id+" > span").sparkline(data, {width: "400px", height: "30px"});
-    $('#value_'+indicator.id).text(data[data.length-1]);
-    var delta = data[data.length-1] - data[data.length-2];
-    var sign  = delta >= 0 ? "+" : "";
-    $('#delta_'+indicator.id).text('('+sign+delta+')');
+    indicator.render();
   }
 
   $('#reset').click(function(){
