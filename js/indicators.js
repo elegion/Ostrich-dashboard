@@ -32,10 +32,11 @@ function Indicator(id, name, initialValue, type) {
       composite = false;  
     } 
     var data = this.getData();
-    $('#'+this.id+" > span").sparkline(data, {width: "350px", height: "30px", lineColor: color, composite: composite, fillColor: false});
-    $('#value_'+this.id).text(this.values[this.values.length-1].value);
     var delta = this.values[this.values.length-1].value - this.values[this.values.length-2].value;
     var sign  = delta >= 0 ? "+" : "";
+    var value = this.values[this.values.length-1].value;
+    $('#'+this.id+" > span").sparkline(data, {width: "350px", height: "30px", lineColor: color, composite: composite, fillColor: false});
+    $('#value_'+this.id).text(value);
     $('#delta_'+this.id).text('('+sign+delta+')');
   }
 
