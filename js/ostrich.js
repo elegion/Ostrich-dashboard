@@ -1,8 +1,8 @@
 $(function(){
   var namespace = "head" //todo: generate unique
 
-  var indicators = []
-  var address = $('#ostrich-address').val().replace(/\/$/g, "")
+  var indicators
+  var address
 
   var fetch = function() {
     $.jsonp({
@@ -72,7 +72,10 @@ $(function(){
   //load address from localStorage if any
   if (localStorage && localStorage["ostrich-address"]) {
     $('#ostrich-address').val(localStorage["ostrich-address"]);
+  } else {
+    $('#ostrich-address').val("http://elegion.github.com/Ostrich-dashboard/demo")
   }
 
+  reset();
   fetch();
 });
