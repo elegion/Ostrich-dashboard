@@ -16,23 +16,39 @@ $(function(){
     setTimeout(fetch, 2000);
   };
 
-  var addServer = function() {
+  var trackServer = function() {
     indicators = [];  
     address = $('#ostrich-address').val().replace(/\/$/g, "");
-    //$('#graphs > table > tbody > tr').remove(); 
-    var server = new Server(address, address, colors[servers.length]);
-    servers.push(server);
+    addServer(address);
     if (localStorage) {
       localStorage["ostrich-addresses"] = $.map(servers, function(s){return s.address}).join(';;;');
     }
   };
 
+  var addServer = function(address) {
+    var id = address.replace(/[^a-zA-Z0-9]/g, "_")
+    var server = new Server(id, address, colors[servers.length]);
+    servers.push(server);
+    $('li#server-'+id+' > a > .closeServer').click(function(){
+      removeServer(id);
+      return false;
+    });
+  }
+
+  var removeServer = function(id) {
+    $('li#server-'+id).remove();
+    servers = servers.filter(function(server){return server.id != id});
+    if (localStorage) {
+      localStorage["ostrich-addresses"] = $.map(servers, function(s){return s.address}).join(';;;');
+    }
+  }
+
   //bind reset events
-  $('#reset').click(addServer);
+  $('#reset').click(trackServer);
   
   $('#ostrich-address').keyup(function(event){
     if (event.keyCode == 13) {
-      addServer();
+      trackServer();
     }
   });
 
@@ -45,8 +61,7 @@ $(function(){
   if (localStorage && localStorage["ostrich-addresses"] &&  localStorage["ostrich-addresses"].length > 0) {
     var addresses = localStorage["ostrich-addresses"].split(';;;')
     $.each(addresses, function(k, address){
-      var server = new Server(address, address, colors[servers.length]);
-      servers.push(server);
+      addServer(address);
     });
   }
 
