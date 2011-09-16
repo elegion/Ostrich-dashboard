@@ -19,7 +19,7 @@ var Server = function(id, address, color) {
         $.each(data.counters, function(k,v){
           var indicator = self.indicators[k]
           if (!indicator) {
-            indicator = new Counter(k, v);
+            indicator = new Counter(k, v, self);
             self.indicators[k] = indicator;
             self.indicatorNames.push(k);
           }
@@ -28,7 +28,7 @@ var Server = function(id, address, color) {
         $.each(data.gauges, function(k,v){
           var indicator = self.indicators[k]
           if (!indicator) {
-            indicator = new Gauge(k, v);
+            indicator = new Gauge(k, v, self);
             self.indicators[k] = indicator;
             self.indicatorNames.push(k);
           }

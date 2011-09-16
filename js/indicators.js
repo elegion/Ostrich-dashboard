@@ -12,12 +12,13 @@ function newFilledArray(len, val) {
 }
 
 
-function Indicator(id, name, initialValue, type) {
+function Indicator(id, name, initialValue, type, server) {
   var initial = new TimedValue(initialValue);
   this.id = id
   this.name = name;
   this.values = newFilledArray(350, initial);
   this.opts = {}
+  this.server = server
 
   this.addValue = function(value) {
     this.values = this.values.slice(1)
@@ -29,6 +30,7 @@ function Indicator(id, name, initialValue, type) {
     var composite = true;
     if (oldCount < count) { //first redraw in this fetch pack
       $('#'+this.id).attr('n', count);
+      $('#servers_'+this.id).empty();
       composite = false;  
     } 
     var data = this.getData();
@@ -38,12 +40,13 @@ function Indicator(id, name, initialValue, type) {
     $('#'+this.id+" > span").sparkline(data, {width: "350px", height: "30px", lineColor: color, composite: composite, fillColor: false});
     $('#value_'+this.id).text(value);
     $('#delta_'+this.id).text('('+sign+delta+')');
+    $('#servers_'+this.id).append('<span title="'+this.server.name+'" style="color: '+this.server.color+';">●&nbsp;</span>');
   }
 
   if (!$('#'+id).length) {
     $('#graphs > table > tbody').append(
       '<tr>' +
-       '<td>'+type+'&nbsp</td>' + 
+       '<td id="servers_'+id+'">'+type+'&nbsp</td>' + 
        '<td>'+name+'&nbsp</td>' + 
        '<td id="value_'+id+'"></td>' + 
        '<td id="delta_'+id+'"></td>' + 
@@ -53,9 +56,9 @@ function Indicator(id, name, initialValue, type) {
   }
 }
 
-function Counter(name, initialValue) {
+function Counter(name, initialValue, server) {
   var id = "c_"+name.replace(/[^a-zA-Z0-9]/g, "_");
-  var me = new Indicator(id, name, initialValue, 'counter');
+  var me = new Indicator(id, name, initialValue, 'counter', server);
   me.getData = function() {
     var deltas = [];
     for (var i=1; i < me.values.length; i++) { //(puke)
@@ -67,9 +70,9 @@ function Counter(name, initialValue) {
   return me;
 }
 
-function Gauge(name, initialValue) {
+function Gauge(name, initialValue, server) {
   var id = "g_"+name.replace(/[^a-zA-Z0-9]/g, "_");
-  var me = new Indicator(id, name, initialValue, 'gauge');
+  var me = new Indicator(id, name, initialValue, 'gauge', server);
   me.getData = function() {
     return $.map(me.values, function(timevalue){
       return timevalue.value;

@@ -36,6 +36,7 @@ $(function(){
   }
 
   var removeServer = function(id) {
+    //TODO: Stop fetching
     $('li#server-'+id).remove();
     servers = servers.filter(function(server){return server.id != id});
     if (localStorage) {
