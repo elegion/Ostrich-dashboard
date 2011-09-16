@@ -58,6 +58,12 @@ $(function(){
     $('#errorDiv').hide();
   });
 
+  $('#all-servers').click(function(event){
+    $("#servers > .active").removeClass('active');
+    $('#all-servers').addClass('active');
+  });
+
+
   //load address from localStorage if any
   if (localStorage && localStorage["ostrich-addresses"] &&  localStorage["ostrich-addresses"].length > 0) {
     var addresses = localStorage["ostrich-addresses"].split(';;;')

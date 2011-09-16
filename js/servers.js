@@ -70,8 +70,13 @@ var Server = function(id, address, color) {
 
   $('#servers').append(
     '<li id="server-'+this.id+'">' +
-      '<a href="#"><span style="color: '+this.color+';">●&nbsp;</span>'+this.name+'&nbsp;<span class="closeServer">×</span></a>' + 
+      '<a href="#" id="tab_'+this.id+'"><span style="color: '+this.color+';">●&nbsp;</span>'+this.name+'&nbsp;<span class="closeServer">×</span></a>' + 
     '</li>'
   );
+
+  $('#tab_'+this.id).click(function(event){
+    $("#servers > .active").removeClass('active');
+    $('#server-'+id).addClass('active');
+  });
 
 };
