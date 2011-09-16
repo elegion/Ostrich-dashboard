@@ -36,8 +36,8 @@ $(function(){
   }
 
   var removeServer = function(id) {
-    //TODO: Stop fetching
     $('li#server-'+id).remove();
+    $('#graphs > table > tbody > tr').filter(function(i){return this.getAttribute('servers') == (id+',')}).remove();
     servers = servers.filter(function(server){return server.id != id});
     if (localStorage) {
       localStorage["ostrich-addresses"] = $.map(servers, function(s){return s.address}).join(';;;');

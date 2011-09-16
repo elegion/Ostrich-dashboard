@@ -14,7 +14,7 @@ var Server = function(id, address, color) {
       data: {callback: ""},
       dataType: "jsonp",
       callback: "ostrichCallback",
-      timeout: 1000,
+      timeout: 2000,
       success: function(data){
         $.each(data.counters, function(k,v){
           var indicator = self.indicators[k]
