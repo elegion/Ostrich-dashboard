@@ -25,6 +25,10 @@ function Indicator(id, name, initialValue, type, server) {
     this.values.push(value)
   };
 
+  this.rowId = function() {
+    return 'row_'+this.id;
+  };
+
   this.render = function(color, count) {
     var oldCount = parseInt($('#'+this.id).attr("n"))
     var composite = true;
@@ -32,7 +36,6 @@ function Indicator(id, name, initialValue, type, server) {
       $('#'+this.id).attr('n', count);
       $('#servers_'+this.id).empty();
       composite = false;  
-      //$('#row_'+this.id).removeAttr('servers')
     } 
     var data = this.getData();
     var delta = this.values[this.values.length-1].value - this.values[this.values.length-2].value;
@@ -42,18 +45,18 @@ function Indicator(id, name, initialValue, type, server) {
     $('#value_'+this.id).text(value);
     $('#delta_'+this.id).text('('+sign+delta+')');
     $('#servers_'+this.id).append('<span title="'+this.server.name+'" style="color: '+this.server.color+';">●&nbsp;</span>');
-    var serversAttr = $('#row_'+this.id).attr('servers')
+    var serversAttr = $('#'+this.rowId()).attr('servers')
     if (!serversAttr) {
       serversAttr = ''
     }
     if (serversAttr.indexOf(this.server.id+',') < 0) {
-      $('#row_'+this.id).attr('servers', serversAttr+this.server.id+',')
+      $('#'+this.rowId()).attr('servers', serversAttr+this.server.id+',')
     }
   }
 
   if (!$('#'+id).length) {
     $('#graphs > table > tbody').append(
-      '<tr id="row_'+id+'">' +
+      '<tr id="'+this.rowId()+'">' +
        '<td id="servers_'+id+'">'+type+'&nbsp</td>' + 
        '<td>'+name+'&nbsp</td>' + 
        '<td id="value_'+id+'"></td>' + 

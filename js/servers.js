@@ -6,6 +6,7 @@ var Server = function(id, address, color) {
   this.color = color
   this.indicators = [];
   this.indicatorNames = [];
+  this.lastCount = 0;
 
   this.fetch = function(count, updatedSet, targetCount) {
     var self = this;
@@ -62,10 +63,15 @@ var Server = function(id, address, color) {
   };
 
   this.render = function(count) {
+    this.lastCount = count;
     var self = this;
-    $.each(self.indicatorNames, function(k,indicatorName){
-      self.indicators[indicatorName].render(self.color, count); 
-    });
+    var myTab  = $('#server-'+self.id)
+    var allTab = $('#all-servers')
+    if (myTab.hasClass('active') || allTab.hasClass('active')) {
+      $.each(self.indicatorNames, function(k,indicatorName){
+        self.indicators[indicatorName].render(self.color, count); 
+      });
+    }
   };
 
   $('#servers').append(
@@ -74,9 +80,26 @@ var Server = function(id, address, color) {
     '</li>'
   );
 
-  $('#tab_'+this.id).click(function(event){
-    $("#servers > .active").removeClass('active');
-    $('#server-'+id).addClass('active');
-  });
+  var self = this;
+  $('#tab_'+this.id).click(
+    function(evt) {
+      $('#servers > .active').removeClass('active');
+      $('#server-'+id).addClass('active');
+      //self.render(self.lastCount);
+      $('#graphs > table > tbody > tr').each(function(k, tr){
+        var shown = false;
+        for (var i=0; i<self.indicatorNames.length; i++) {
+          if (tr.id == self.indicators[self.indicatorNames[i]].rowId()) {
+            shown = true;
+            $(tr).show();
+            self.indicators[self.indicatorNames[i]].render(self.color, self.lastCount+0.5); 
+          }
+        }
+        if (!shown) {
+          $(tr).hide();
+        }
+      });
+    }
+  );
 
 };

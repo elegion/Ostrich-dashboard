@@ -61,7 +61,15 @@ $(function(){
   $('#all-servers').click(function(event){
     $("#servers > .active").removeClass('active');
     $('#all-servers').addClass('active');
+    $('#graphs > table > tbody > tr').each(function(k, tr){
+      $(tr).show();
+    });
+    $.each(servers, function(index, server){
+      server.render(fetchCounter+1);
+    });
   });
+
+
 
 
   //load address from localStorage if any
