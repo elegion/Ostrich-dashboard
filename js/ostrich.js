@@ -61,11 +61,11 @@ $(function(){
   $('#all-servers').click(function(event){
     $("#servers > .active").removeClass('active');
     $('#all-servers').addClass('active');
+    $.each(servers, function(index, server){
+      server.render(fetchCounter-1);
+    });
     $('#graphs > table > tbody > tr').each(function(k, tr){
       $(tr).show();
-    });
-    $.each(servers, function(index, server){
-      server.render(fetchCounter+1);
     });
   });
 
